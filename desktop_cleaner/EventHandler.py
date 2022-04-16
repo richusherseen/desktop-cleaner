@@ -10,10 +10,9 @@ from extensions import extension_paths
 
 def add_date_to_file_name(filename):
     """
-    Helper function that adds current year/month to destination path. If the path
-    doesn't already exist, it is created.
+    Helper function that adds current datetime to the file name.
 
-    :param Path path: destination root to append subdirectories based on date
+    :param Str source: source of file to be moved
     """
     _datestamp = datetime.now(timezone("Asia/Kolkata")).strftime('%d-%m-%Y %I-%M-%S %p')
     filename = f"{filename.split('.')[0]}_{_datestamp}.{filename.split('.')[-1]}"
@@ -26,7 +25,7 @@ def rename_file(source: str, destination_path: Path):
     name already exists in the destination folder, the file name is numbered and
     incremented until the filename is unique (prevents overwriting files).
 
-    :param Path source: source of file to be moved
+    :param Str source: source of file to be moved
     :param Path destination_path: path to destination directory
     """
     if Path(destination_path / source).exists():
@@ -42,7 +41,7 @@ def rename_file(source: str, destination_path: Path):
         return destination_path / source
 
 def check_destination_path(destination_path):
-    print(destination_path)
+
     if not Path(destination_path).exists():
         destination_path.mkdir(parents=True, exist_ok=True)
 
