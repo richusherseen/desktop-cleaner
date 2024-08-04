@@ -53,14 +53,18 @@ class EventHandler(FileSystemEventHandler):
     def on_modified(self, event):
         try:
             for child in self.watch_path.iterdir():
+                if child.name == "holder of things":
+                    continue
                 # skips directories and non-specified extensions
+                print('child', child)
                 if child.suffix.lower() in extension_paths:
                 # if child.is_file() and child.suffix.lower() in extension_paths:
                     destination_path = self.destination_root / extension_paths[child.suffix.lower()]
                     check_destination_path(destination_path)
                     filename = os.path.basename(child)
                     new_name = add_date_to_file_name(filename)
-                    destination_path = rename_file(source=new_name, destination_path=destination_path)
+                    if extension_paths[child.suffix.lower()] != "other/uncategorized":
+                        destination_path = rename_file(source=new_name, destination_path=destination_path)
                     shutil.move(src=child, dst=destination_path)
         except Exception as e:
             print(str(e))

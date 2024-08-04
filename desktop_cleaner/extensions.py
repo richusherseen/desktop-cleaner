@@ -1,6 +1,7 @@
 extension_paths = {
         # No name
         'noname':  'other/uncategorized',
+        '':  'other/uncategorized',
         # audio
         '.aif':    'media/audio',
         '.cda':    'media/audio',
@@ -54,6 +55,10 @@ extension_paths = {
         '.tif':    'media/images',
         '.tiff':   'media/images',
         '.cr2':    'media/images',
+        '.heic':    'media/images',
+        '.HEIC':    'media/images',
+        '.webp':    'media/images',
+        
         # internet
         '.asp':    'other/internet',
         '.aspx':   'other/internet',
